@@ -11,8 +11,9 @@ function getBookById(req, res) {
   if (!book) {
     res.status(404);
     res.json({status: '404 Not Found'});
+  }else{
+    res.json(book);
   }
-  res.json(book);
 }
 
 function createBook(req, res) {
@@ -26,8 +27,9 @@ function updateBook(req, res) {
   if (!updateBook) {
     res.status(404);
     res.json({status: '404 Not Found'});
+  }else{
+    res.json(updateBook);
   }
-  res.json(updateBook);
 }
 
 function deleteBook(req, res) {

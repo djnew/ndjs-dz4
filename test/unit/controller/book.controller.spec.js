@@ -72,9 +72,14 @@ describe('book controller unit', () => {
     expect(res.status).toBeCalledWith(404);
     expect(res.json).toBeCalledWith(status404);
   });
-  it('deleteBook', () => {
+  it('deleteBook found', () => {
     req.params.id = bookKeys[0];
     deleteBook(req, res)
     expect(res.send).toBeCalledWith('ok');
+  })
+  it('deleteBook not found', () => {
+    req.params.id = 'qwerty';
+    deleteBook(req, res)
+    expect(res.send).toBeCalledWith('');
   })
 });

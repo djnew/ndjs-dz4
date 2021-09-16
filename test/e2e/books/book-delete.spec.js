@@ -17,7 +17,7 @@ const newBookForDelete = {
 
 describe(' book delete e2e', () => {
   it('delete by id', async () => {
-    const {data: id} = await axios.post(`http://localhost:3000${router.bookCreate.path}`, newBookForDelete);
+    const {data: {id}} = await axios.post(`http://localhost:3000${router.bookCreate.path}`, newBookForDelete);
     const {
       data,
       status,
@@ -25,11 +25,8 @@ describe(' book delete e2e', () => {
     expect(status).toBe(200);
     expect(data).toBe('ok');
   });
-  it('404', async () => {
-    try {
-      await axios.delete(`http://localhost:3000${router.bookDelete.path.replace(':id', 'qwerty')}`);
-    } catch (e) {
-      expect(e.response.status).toBe(404);
-    }
+  it('not found', async () => {
+      const {data} = await axios.delete(`http://localhost:3000${router.bookDelete.path.replace(':id', 'qwerty')}`);
+      expect(data).toBe('')
   });
 });
