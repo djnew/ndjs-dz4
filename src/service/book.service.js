@@ -45,8 +45,9 @@ class BookService {
   }
 
   static deleteBook(id) {
+    const result = !!books[id];
     delete books[id];
-    return 'ok';
+    return result ? 'ok' : '';
   }
 }
 
