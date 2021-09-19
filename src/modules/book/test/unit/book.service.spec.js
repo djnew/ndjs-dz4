@@ -4,8 +4,8 @@
  * @group unit/service/book
  */
 
-const {BookService} = require('../../../src/service/book.service');
-const books = require('../../../src/store/book.store');
+const {BookService} = require('../../service/book.service');
+const books = require('../../store/book.store');
 const bookKeys = Object.keys(books);
 const newBook = {
   title: "test create/update",
@@ -25,14 +25,17 @@ describe('book service unit', () => {
   it('getById not found', () => {
     expect(BookService.getById('qwerty')).toBeFalsy();
   });
-  it('createBook', () => {
-    expect(BookService.createBook(newBook)).toMatchObject(newBook);
+  it('createBook', async () => {
+    const book = await BookService.createBook({body: newBook})
+    expect(book).toMatchObject(newBook);
   });
-  it('updateBook found', () => {
-    expect(BookService.updateBook(bookKeys[1],newBook)).toMatchObject(newBook);
+  it('updateBook found', async () => {
+    const updateBook = await BookService.updateBook(bookKeys[1],newBook);
+    expect(updateBook).toMatchObject(newBook);
   })
-  it('updateBook not found', () => {
-    expect(BookService.updateBook('qwerty')).toBeFalsy();
+  it('updateBook not found', async () => {
+    const testFalse = await BookService.updateBook('qwerty')
+    expect(testFalse).toBeFalsy();
   })
   it('deleteBook', () => {
     expect(BookService.deleteBook(bookKeys[bookKeys.length - 1])).toBe('ok');

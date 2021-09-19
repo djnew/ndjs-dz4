@@ -1,4 +1,5 @@
 const {BookService} = require('../service/book.service');
+const path = require('path');
 
 function indexBook(req, res) {
   res.json(
@@ -16,14 +17,14 @@ function getBookById(req, res) {
   }
 }
 
-function createBook(req, res) {
-  const newBook = BookService.createBook(req.body);
+async function createBook(req, res) {
+  const newBook = await BookService.createBook(req);
   res.status(201);
   res.json(newBook);
 }
 
-function updateBook(req, res) {
-  const updateBook = BookService.updateBook(req.params.id, req.body);
+async function updateBook(req, res) {
+  const updateBook = await BookService.updateBook(req.params.id, req.body);
   if (!updateBook) {
     res.status(404);
     res.json({status: '404 Not Found'});
@@ -36,11 +37,23 @@ function deleteBook(req, res) {
   res.send(BookService.deleteBook(req.params.id));
 }
 
+function downloadBook(req, res) {
+  const filePath = BookService.downloadBook(req.params.id);
+  if(!filePath){
+    res.status(404);
+    res.json({status: '404 Not Found'});
+  }else {
+    const pathFromRoot = path.join(__dirname,'../../../../', filePath)
+    res.download(`${pathFromRoot}`);
+  }
+}
+
 module.exports = {
   indexBook,
   getBookById,
   createBook,
   updateBook,
   deleteBook,
+  downloadBook
 };
 

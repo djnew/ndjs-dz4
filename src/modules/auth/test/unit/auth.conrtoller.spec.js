@@ -3,7 +3,7 @@
  *
  * @group unit/controller/auth
  */
-const {auth} = require('../../../src/controller/auth.controller')
+const {auth} = require('../../controller/auth.controller')
 
 const res = {
   json: jest.fn(),

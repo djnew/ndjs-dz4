@@ -9,8 +9,8 @@ const {
   createBook,
   updateBook,
   deleteBook,
-} = require('../../../src/controller/book.controller');
-const books = require('../../../src/store/book.store');
+} = require('../../controller/book.controller');
+const books = require('../../store/book.store');
 const bookKeys = Object.keys(books);
 
 let req;
@@ -54,21 +54,21 @@ describe('book controller unit', () => {
     expect(res.status).toBeCalledWith(404);
     expect(res.json).toBeCalledWith(status404);
   });
-  it('createBook', () => {
+  it('createBook', async () => {
     req.body = newBook;
-    createBook(req, res);
+    await createBook(req, res);
     expect(res.status).toBeCalledWith(201);
   });
-  it('updateBook found', () => {
+  it('updateBook found', async () => {
     req.params.id = bookKeys[1];
     req.body = newBook;
-    updateBook(req, res)
+    await updateBook(req, res)
     expect(res.json).toBeCalled();
   });
-  it('updateBook not found', () => {
+  it('updateBook not found', async () => {
     req.params.id = 'qwerty';
     req.body = newBook;
-    updateBook(req, res)
+    await updateBook(req, res)
     expect(res.status).toBeCalledWith(404);
     expect(res.json).toBeCalledWith(status404);
   });

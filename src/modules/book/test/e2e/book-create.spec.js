@@ -5,7 +5,8 @@
  */
 
 const axios = require('axios');
-const router = require('../../../src/routes');
+const {router} = require('../../router/book.router');
+const {path} = require('../../book.module')
 
 const newBook = {
   title: "test book2",
@@ -14,10 +15,11 @@ const newBook = {
   favorite: "test favorites",
   fileCover: "test file cover",
   fileName: "test file name",
+  fileBook: ""
 }
 
 test('book create e2e', async () => {
-  const {data,status} = await axios.post(`http://localhost:3000${router.bookCreate.path}`,newBook);
+  const {data,status} = await axios.post(`http://localhost:3000${path}${router.bookCreate.path}`,newBook);
   expect(status).toBe(201);
   expect(data).toMatchObject(newBook);
 })
