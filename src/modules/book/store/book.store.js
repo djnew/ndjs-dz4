@@ -9,6 +9,7 @@ const books = {
     favorite: 'favorite',
     fileCover: 'fileCover',
     fileName: 'fileName',
+    fileBook: '/uploads/test.html',
   }),
   '0e052e8e-1204-4540-b157-9f27faf034c8': new BookEntity({
     id: '0e052e8e-1204-4540-b157-9f27faf034c8',
@@ -18,6 +19,7 @@ const books = {
     favorite: 'favorite',
     fileCover: 'fileCover',
     fileName: 'fileName',
+    fileBook: '',
   }),
   '0da81a5b-9a96-4c12-bf1f-dd03887ad7de': new BookEntity({
     id: '0da81a5b-9a96-4c12-bf1f-dd03887ad7de',
@@ -27,6 +29,7 @@ const books = {
     favorite: 'favorite',
     fileCover: 'fileCover',
     fileName: 'fileName',
+    fileBook: '',
   }),
   '6e6c433d-7c9d-4962-a03c-4629ab78d3de': new BookEntity({
     id: '6e6c433d-7c9d-4962-a03c-4629ab78d3de',
@@ -36,6 +39,7 @@ const books = {
     favorite: 'favorite',
     fileCover: 'fileCover',
     fileName: 'fileName',
+    fileBook: '',
   }),
 };
 
