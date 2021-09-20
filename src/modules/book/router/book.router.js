@@ -1,5 +1,4 @@
-const multer = require('multer');
-const upload = multer({dest:'uploads/',preservePath:true});
+const fileMiddleware = require('../middleware/file');
 
 const {
   indexBook,
@@ -24,13 +23,13 @@ const router = {
   bookCreate: {
     path: '/',
     method: 'post',
-    file: upload.single('fileBook'),
+    file: fileMiddleware.single('fileBook'),
     function: createBook,
   },
   bookUpdate: {
     path: '/:id',
     method: 'put',
-    file: upload.single('fileBook'),
+    file: fileMiddleware.single('fileBook'),
     function: updateBook,
   },
   bookDelete: {

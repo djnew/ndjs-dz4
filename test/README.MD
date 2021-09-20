@@ -16,18 +16,17 @@ $ jest
  PASS  src/modules/book/test/unit/book.controller.spec.js
  PASS  src/modules/auth/test/e2e/auth.spec.js
  PASS  src/modules/book/test/e2e/book-update.spec.js
- PASS  src/modules/book/test/e2e/book-create.spec.js
- PASS  src/modules/book/test/e2e/book-delete.spec.js
- PASS  src/modules/book/test/e2e/book-index.spec.js
  PASS  src/modules/book/test/e2e/book-get-by-id.spec.js
+ PASS  src/modules/book/test/e2e/book-create.spec.js
+ PASS  src/modules/book/test/e2e/book-index.spec.js
+ PASS  src/modules/book/test/e2e/book-delete.spec.js
 
 Test Suites: 12 passed, 12 total
-Tests:       28 passed, 28 total
+Tests:       30 passed, 30 total
 Snapshots:   0 total
-Time:        3.273 s
+Time:        2.948 s, estimated 3 s
 Ran all test suites.
-Done in 4.56s.
-
+Done in 4.11s.
 ```
 запуск unit:
 ```shell
@@ -43,7 +42,7 @@ $ yarn test:e2e
 -------------------------|---------|----------|---------|---------|-------------------
 File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -------------------------|---------|----------|---------|---------|-------------------
-All files                |      80 |    55.56 |   86.36 |      80 |                   
+All files                |   93.52 |    70.73 |    87.5 |   93.52 |                   
  controller              |     100 |      100 |     100 |     100 |                   
   home.controller.js     |     100 |      100 |     100 |     100 |                   
  modules/auth            |     100 |      100 |     100 |     100 |                   
@@ -56,15 +55,16 @@ All files                |      80 |    55.56 |   86.36 |      80 |
   auth.service.js        |     100 |      100 |     100 |     100 |                   
  modules/book            |     100 |      100 |     100 |     100 |                   
   book.module.js         |     100 |      100 |     100 |     100 |                   
- modules/book/controller |      75 |    66.67 |   83.33 |      75 |                   
-  book.controller.js     |      75 |    66.67 |   83.33 |      75 | 41-47             
+ modules/book/controller |     100 |      100 |     100 |     100 |                   
+  book.controller.js     |     100 |      100 |     100 |     100 |                   
  modules/book/entity     |     100 |    57.89 |     100 |     100 |                   
   book.entity.js         |     100 |    57.89 |     100 |     100 | 6,8-13,20         
+ modules/book/middleware |      50 |        0 |       0 |      50 |                   
+  file.js                |      50 |        0 |       0 |      50 | 5-8,22-25         
  modules/book/router     |     100 |      100 |     100 |     100 |                   
   book.router.js         |     100 |      100 |     100 |     100 |                   
- modules/book/service    |   58.54 |    44.44 |   71.43 |   58.54 |                   
-  book-file.service.js   |   27.27 |        0 |       0 |   27.27 | 6-18              
-  book.service.js        |      70 |       50 |   83.33 |      70 | 29-32,47-50,62-65 
+ modules/book/service    |      92 |    83.33 |     100 |      92 |                   
+  book.service.js        |      92 |    83.33 |     100 |      92 | 28,42             
  modules/book/store      |     100 |      100 |     100 |     100 |                   
   book.store.js          |     100 |      100 |     100 |     100 |                   
 -------------------------|---------|----------|---------|---------|-------------------

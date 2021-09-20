@@ -3,7 +3,7 @@ const path = require('path');
 
 function indexBook(req, res) {
   res.json(
-    BookService.getAll()
+    BookService.getAll(),
   );
 }
 
@@ -12,7 +12,7 @@ function getBookById(req, res) {
   if (!book) {
     res.status(404);
     res.json({status: '404 Not Found'});
-  }else{
+  } else {
     res.json(book);
   }
 }
@@ -28,7 +28,7 @@ async function updateBook(req, res) {
   if (!updateBook) {
     res.status(404);
     res.json({status: '404 Not Found'});
-  }else{
+  } else {
     res.json(updateBook);
   }
 }
@@ -39,12 +39,18 @@ function deleteBook(req, res) {
 
 function downloadBook(req, res) {
   const filePath = BookService.downloadBook(req.params.id);
-  if(!filePath){
+  if (!filePath) {
     res.status(404);
     res.json({status: '404 Not Found'});
-  }else {
-    const pathFromRoot = path.join(__dirname,'../../../../', filePath)
-    res.download(`${pathFromRoot}`);
+  } else {
+    const pathFromRoot = path.join(__dirname, '../../../../public', filePath);
+
+    res.download(`${pathFromRoot}`, null, err => {
+        if (err) {
+          res.status(404).json();
+        }
+      },
+    );
   }
 }
 
@@ -54,6 +60,6 @@ module.exports = {
   createBook,
   updateBook,
   deleteBook,
-  downloadBook
+  downloadBook,
 };
 

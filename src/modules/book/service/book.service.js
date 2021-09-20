@@ -1,7 +1,6 @@
 const bookStore = require('../store/book.store');
 const {BookEntity} = require('../entity/book.entity');
 const books = require('../store/book.store');
-const {BookFileService} = require('../service/book-file.service');
 
 class BookService {
   static getAll() {
@@ -25,12 +24,8 @@ class BookService {
       fileName: params.body.fileName,
     });
 
-    if(params.file !== undefined) {
-      const bookFilePath = await BookFileService.uploadFile(params.file, newBook.id)
-
-      if(bookFilePath){
-        newBook.bookFill({fileBook: bookFilePath})
-      }
+    if (params.file !== undefined) {
+      newBook.bookFill({fileBook: params.file.path});
     }
 
     return books[newBook.id] = newBook;
@@ -43,12 +38,8 @@ class BookService {
 
     const updateBook = books[id];
     updateBook.bookFill(params);
-    if(params.file !== undefined) {
-      const bookFilePath = await BookFileService.uploadFile(params.file, id)
-
-      if(bookFilePath){
-        updateBook.bookFill({fileBook: bookFilePath})
-      }
+    if (params.file !== undefined) {
+      updateBook.bookFill({fileBook: params.file.path});
     }
     return updateBook;
   }
@@ -58,11 +49,12 @@ class BookService {
     delete books[id];
     return result ? 'ok' : '';
   }
+
   static downloadBook(id) {
-    if(!books[id]){
+    if (!books[id]) {
       return false;
     }
-     return books[id].fileBook
+    return books[id].fileBook;
   }
 }
 
