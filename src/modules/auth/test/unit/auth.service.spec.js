@@ -5,7 +5,7 @@
  */
 
 
-const {AuthService} = require('../../../src/service/auth.service');
+const {AuthService} = require('../../service/auth.service');
 
 const authTest = {id: 1, mail: 'test@mail.ru'};
 
