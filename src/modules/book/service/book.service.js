@@ -25,7 +25,7 @@ class BookService {
     });
 
     if (params.file !== undefined) {
-      newBook.bookFill({fileBook: params.file.path});
+      newBook.bookFill({fileBook: params.file.path, fileName: params.file.originalname});
     }
 
     return books[newBook.id] = newBook;
@@ -37,9 +37,9 @@ class BookService {
     }
 
     const updateBook = books[id];
-    updateBook.bookFill(params);
+    updateBook.bookFill(params.body);
     if (params.file !== undefined) {
-      updateBook.bookFill({fileBook: params.file.path});
+      updateBook.bookFill({fileBook: params.file.path, fileName: params.file.originalname});
     }
     return updateBook;
   }

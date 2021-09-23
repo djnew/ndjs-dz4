@@ -6,9 +6,11 @@ const {getRoutes} = require('./modules');
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.set('views', './src/views');
+app.set("view engine", "ejs");
 
 app.use(express.json());
-app.use(express.static('public/uploads'));
+app.use(express.static('public'));
 app.use(cors());
 
 /**

@@ -1,0 +1,49 @@
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  min-height: 100%;
+}
+
+.library-head {
+  padding: 25px 0;
+  background-color: #bcddff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.library-head .logo {
+  max-width: 40px;
+}
+.library-head .logo-text {
+  font-size: 30px;
+  font-weight: 300;
+  padding-left: 15px;
+  vertical-align: middle;
+  color: #000;
+}
+
+.main-content {
+  padding: 50px 0;
+}
+.main-content .uk-card-hover {
+  transition: box-shadow ease-in-out 0.3s;
+}
+.main-content .uk-card.footer {
+  padding-bottom: 65px;
+}
+.main-content .uk-icon {
+  color: #000;
+}
+.main-content button.danger {
+  color: red;
+}
+
+.library-footer {
+  font-size: 12px;
+  padding: 25px 0;
+  color: #000;
+  background-color: #bcddff;
+}
+.library-footer span {
+  font-size: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */

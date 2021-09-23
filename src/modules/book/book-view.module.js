@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const {router: bookRouter} = require('./router/book.router');
+const {router: bookRouter} = require('./router/book-library.router');
 
-const PATH = '/api/books';
+const PATH = '/library';
 
 
 Object.keys(bookRouter).forEach((route) => {

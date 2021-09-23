@@ -7,11 +7,10 @@
 const {home} = require('../../../src/controller/home.controller');
 
 const res = {
-  send: jest.fn(),
+  render: jest.fn(),
 };
 const req = jest.fn();
 test('home controller unit', () => {
   home(req, res);
-  expect(res.send).toBeCalled();
-  expect(res.send).toBeCalledWith('Hello World!');
+  expect(res.render).toBeCalled();
 });

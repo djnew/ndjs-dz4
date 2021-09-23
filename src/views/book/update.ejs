@@ -1,0 +1,8 @@
+<%- include("../layout/header", {title: title}) %>
+<ul class="uk-breadcrumb">
+    <li><a href="/">Главная</a></li>
+    <li><a href="/library">Книги</a></li>
+    <li><span>Редактировать книгу <%= book.title %></span></li>
+</ul>
+<%- include("./form", {book: book, action: `update/${book.id}`}) %>
+<%- include("../layout/footer") %>
