@@ -1,5 +1,7 @@
 function home(req, res) {
-  res.send('Hello World!')
+  res.render("index", {
+    title: "Библиотека"
+  })
 }
 
 module.exports = {home};

@@ -1,0 +1,15 @@
+<%- include("../layout/header", {title: title}) %>
+<ul class="uk-breadcrumb">
+    <li><a href="/">Главная</a></li>
+    <li><a href="/library">Книги</a></li>
+    <li><span><%= book.title; %></span></li>
+</ul>
+<div class="uk-text-center uk-heading-small"><%= book.title; %></div>
+<p><b>Авторы:</b> <%= book.authors; %></p>
+<p><b>Описание:</b></p>
+<p><%= book.description; %></p>
+<p><%= book.favorite %></p>
+<% if(book.fileBook.length) { %>
+    <p><b>Файл:</b> <a href="<%= book.fileBook; %>" download><%= book.fileName; %></p>
+<% } %>
+<%- include("../layout/footer") %>

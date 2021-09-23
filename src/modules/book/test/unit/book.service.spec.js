@@ -30,7 +30,7 @@ describe('book service unit', () => {
     expect(book).toMatchObject(newBook);
   });
   it('updateBook found', async () => {
-    const updateBook = await BookService.updateBook(bookKeys[1],newBook);
+    const updateBook = await BookService.updateBook(bookKeys[1],{body:newBook});
     expect(updateBook).toMatchObject(newBook);
   })
   it('updateBook not found', async () => {

@@ -1,0 +1,45 @@
+<%- include("../layout/header", {title: title}) %>
+<ul class="uk-breadcrumb">
+    <li><a href="/">Главная</a></li>
+    <li><span>Книги</span></li>
+</ul>
+<p><a class="uk-button uk-button-primary" href="/library/add">Добавить книгу</a></p>
+<div class="uk-child-width-1-2@s uk-grid-match" uk-grid>
+    <% Object.keys(books).forEach((el, idx) => { %>
+        <div>
+            <div class="uk-card footer uk-card-hover uk-card-default">
+                <div class="uk-card-header">
+                    <div>
+                        <h3 class="uk-card-title uk-margin-remove-bottom">
+                            <%= books[el].title; %>
+                        </h3>
+                        <div class="uk-text-meta uk-margin-remove-top"><%= books[el].authors; %></div>
+                    </div>
+                </div>
+                <div class="uk-card-body">
+                    <p><%= books[el].description; %></p>
+                </div>
+                <div class="uk-card-footer uk-position-bottom">
+                    <div class="uk-clearfix">
+                        <div class="uk-float-right">
+                            <ul class="uk-subnav uk-margin-remove-bottom" uk-margin>
+                                <li><a href="/library/update/<%= books[el].id %>" uk-icon="pencil"></a></li>
+                                <li>
+                                    <form action="/library/delete/<%= books[el].id %>" method="POST">
+                                        <button type="submit" class="uk-button uk-button-link danger"
+                                                uk-icon="trash"></button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="uk-float-left">
+                            <a href="/library/<%= books[el].id; %>" class="uk-button uk-button-text">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<%- include("../layout/footer") %>

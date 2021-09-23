@@ -1,0 +1,56 @@
+@import "_variables";
+
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  min-height: 100%;
+}
+
+.library-head {
+  padding: 25px 0;
+  background-color: $background-color;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+
+  .logo {
+    max-width: 40px;
+
+    &-text {
+      font-size: 30px;
+      font-weight: 300;
+      padding-left: 15px;
+      vertical-align: middle;
+      color: #000;
+    }
+  }
+}
+
+.main-content {
+  padding: 50px 0;
+
+  .uk-card-hover {
+    transition: box-shadow ease-in-out .3s;
+  }
+
+  .uk-card {
+    &.footer {
+      padding-bottom: 65px;
+    }
+  }
+  .uk-icon{
+    color:#000;
+  }
+  button.danger {
+    color: red;
+  }
+}
+
+.library-footer {
+  font-size: 12px;
+  padding: 25px 0;
+  color: #000;
+  background-color: $background-color;
+
+  span {
+    font-size: 10px;
+  }
+}

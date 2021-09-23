@@ -1,0 +1,26 @@
+<form action="/library/<%= action %>" method="POST" enctype="multipart/form-data">
+    <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Добавить книгу</legend>
+        <div class="uk-margin">
+            <input class="uk-input" required name="title" value="<%= book.title %>" type="text" placeholder="Название книги">
+        </div>
+        <div class="uk-margin">
+            <input class="uk-input" required name="authors" value="<%= book.authors %>" type="text" placeholder="Авторы">
+        </div>
+        <div class="uk-margin">
+            <textarea name="description" required class="uk-textarea" placeholder="Описание книги"><%= book.description %></textarea>
+        </div>
+        <div class="uk-margin">
+            <label><input class="uk-checkbox" value="Популярная" name="favorite" type="checkbox" <%= book.favorite === 'Популярная' ? 'checked' : '' %>> Популярная</label>
+        </div>
+        <div class="uk-margin">
+            <div uk-form-custom="target: true">
+                <input type="file" name="fileBook">
+                <input class="uk-input uk-form-width-medium" type="text" placeholder="Выберите файл" disabled>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <button class="uk-button uk-button-default">Сохранить</button>
+        </div>
+    </fieldset>
+</form>

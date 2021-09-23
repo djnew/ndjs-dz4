@@ -24,7 +24,7 @@ async function createBook(req, res) {
 }
 
 async function updateBook(req, res) {
-  const updateBook = await BookService.updateBook(req.params.id, req.body);
+  const updateBook = await BookService.updateBook(req.params.id, req);
   if (!updateBook) {
     res.status(404);
     res.json({status: '404 Not Found'});
