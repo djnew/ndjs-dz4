@@ -1,4 +1,6 @@
-const {viewIndexBook, viewBook, viewAddBook, viewBookDelete, viewAddBookPost, viewUpdateBook, viewUpdateBookPost} = require('../controller/book-view.controller');
+const {viewIndexBook, viewBook, viewAddBook, viewBookDelete, viewAddBookPost, viewUpdateBook, viewUpdateBookPost,
+  viewGetCounter
+} = require('../controller/book-view.controller');
 const fileMiddleware = require('../middleware/file');
 
 const router = {
@@ -17,6 +19,11 @@ const router = {
     path: '/update/:id',
     method: 'get',
     function: viewUpdateBook,
+  },
+  bookCounter:{
+    path: '/counter/:id',
+    method: 'get',
+    function: viewGetCounter
   },
   bookUpdatePost: {
     path: '/update/:id',

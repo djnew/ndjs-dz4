@@ -1,17 +1,53 @@
 const bookStore = require('../store/book.store');
 const {BookEntity} = require('../entity/book.entity');
 const books = require('../store/book.store');
+const axios = require('axios');
 
-class BookService {
+const url = process.env.COUNTER_URL || 'localhost';
+const port = process.env.COUNTER_PORT || 5000;
+
+  class BookService {
   static getAll() {
     return bookStore;
   }
 
-  static getById(id) {
+  static async incrCounter(id) {
+    console.log(`incr ${url}:${port}/counter/${id}/incr`)
+    try {
+      const {data} = await axios.get(`${url}:${port}/counter/${id}/incr`);
+      return data.counter || false;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  }
+
+  static async getCounter(id) {
+    console.log(`get ${url}:${port}/counter/${id}`)
+    try {
+      const {data} = await axios.get(`${url}:${port}/counter/${id}`);
+      return data.counter || false;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  }
+
+  static async getById(id, incr = false) {
     if (!bookStore[id]) {
       return false;
     }
-    return bookStore[id];
+    let shows;
+    if (incr) {
+      shows = await this.incrCounter(id);
+    } else {
+      shows = await this.getCounter(id);
+    }
+
+    return {
+      book: bookStore[id],
+      shows: shows ? shows : 0,
+    };
   }
 
   static async createBook(params) {
