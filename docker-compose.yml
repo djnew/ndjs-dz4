@@ -1,0 +1,34 @@
+version: '3.1'
+services:
+  ndjs-dz4-app:
+    build:
+      context: ./books
+      dockerfile: books/.docker/Dockerfile
+    entrypoint: ['yarn', 'watch']
+    env_file:
+      - .env
+    ports:
+      - "80:${PORT}"
+    volumes:
+      - "./books/src:/var/www/src"
+    links:
+      - ndjs-dz4-counter
+  ndjs-dz4-counter:
+    build:
+      context: ./counter
+      dockerfile: counter/Dockerfile
+    entrypoint: ['yarn', 'watch']
+    env_file:
+      - .env
+    volumes:
+      - "./counter/src:/var/www/src"
+    ports:
+      - "5000:${PORT}"
+    links:
+      - ndjs-dz4-redis
+  ndjs-dz4-redis:
+    image: redis:alpine
+    volumes:
+      - redis_data:/data
+volumes:
+  redis_data:

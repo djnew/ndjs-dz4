@@ -6,11 +6,11 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
-    "watch": "nodemon --watch src src/index.js",
-    "lint": "eslint --ext \".js\" --ignore-path .eslintignore .",
-    "test": "jest",
-    "test:unit": "jest --group=unit",
-    "test:e2e": "jest --group=e2e"
+    "watch": "node_modules/.bin/nodemon -L --watch src src/index.js",
+    "lint": "node_modules/.bin/eslint --ext \\\".js\\\" --ignore-path .eslintignore .",
+    "test": "node_modules/.bin/jest",
+    "test:unit": "node_modules/.bin/jest --group=unit",
+    "test:e2e": "node_modules/.bin/jest --group=e2e"
   },
   "dependencies": {
     "axios": "^0.21.4",
