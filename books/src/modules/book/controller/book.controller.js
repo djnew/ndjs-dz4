@@ -1,13 +1,14 @@
 const {BookService} = require('../service/book.service');
 const path = require('path');
 
-function indexBook(req, res) {
+async function indexBook(req, res) {
+  const books = await BookService.getAll();
   res.json(
-    BookService.getAll(),
+    books
   );
 }
 
-function getBookById(req, res) {
+async function getBookById(req, res) {
   const book = BookService.getById(req.params.id);
   if (!book) {
     res.status(404);
