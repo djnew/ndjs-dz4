@@ -1,14 +1,12 @@
-const bookStore = require('../store/book.store');
-const {BookEntity} = require('../entity/book.entity');
-const books = require('../store/book.store');
+const {BookModel} = require('../model/book.model');
 const axios = require('axios');
 
 const url = process.env.COUNTER_URL || 'localhost';
 const port = process.env.COUNTER_PORT || 5000;
 
-  class BookService {
-  static getAll() {
-    return bookStore;
+class BookService {
+  static async getAll() {
+    return BookModel.find().select('-__v');
   }
 
   static async incrCounter(id) {
@@ -34,56 +32,83 @@ const port = process.env.COUNTER_PORT || 5000;
   }
 
   static async getById(id, incr = false) {
-    if (!bookStore[id]) {
+    try {
+      const book = await BookModel.findById(id);
+      let shows;
+      if (incr) {
+        shows = await this.incrCounter(id);
+      } else {
+        shows = await this.getCounter(id);
+      }
+
+      return {
+        book: book,
+        shows: shows ? shows : 0,
+      };
+    } catch (e) {
+      console.error(e)
       return false;
     }
-    let shows;
-    if (incr) {
-      shows = await this.incrCounter(id);
-    } else {
-      shows = await this.getCounter(id);
-    }
-
-    return {
-      book: bookStore[id],
-      shows: shows ? shows : 0,
-    };
   }
 
   static async createBook(params) {
-    const newBook = new BookEntity({
+    let bookFile = {
+      fileBook: '',
+      bookFile: ''
+    };
+    if (params.file !== undefined) {
+      bookFile = {fileBook: params.file.path, fileName: params.file.originalname};
+    }
+    const bookProps = {
       title: params.body.title,
       description: params.body.description,
       authors: params.body.authors,
       favorite: params.body.favorite,
       fileCover: params.body.fileCover,
-      fileName: params.body.fileName,
-    });
-
-    if (params.file !== undefined) {
-      newBook.bookFill({fileBook: params.file.path, fileName: params.file.originalname});
+    };
+    const newBook = new BookModel(Object.assign(bookProps, bookFile));
+    try {
+      await newBook.save();
+      return newBook;
+    } catch (e) {
+      console.error(e);
+      return false
     }
-
-    return books[newBook.id] = newBook;
   }
 
   static async updateBook(id, params) {
-    if (!books[id]) {
-      return false;
-    }
+    try{
+      let bookFile = {
+        fileBook: '',
+        bookFile: ''
+      };
+      if (params.file !== undefined) {
+        bookFile = {fileBook: params.file.path, fileName: params.file.originalname};
+      }
 
-    const updateBook = books[id];
-    updateBook.bookFill(params.body);
-    if (params.file !== undefined) {
-      updateBook.bookFill({fileBook: params.file.path, fileName: params.file.originalname});
+      const bookProps = {
+        title: params.body.title,
+        description: params.body.description,
+        authors: params.body.authors,
+        favorite: params.body.favorite,
+        fileCover: params.body.fileCover,
+      };
+
+      return await BookModel.findByIdAndUpdate(id, Object.assign(bookProps, bookFile));
+    }catch (e){
+      console.log(e);
+      return false
     }
-    return updateBook;
   }
 
-  static deleteBook(id) {
-    const result = !!books[id];
-    delete books[id];
-    return result ? 'ok' : '';
+  static async deleteBook(id) {
+    try {
+      await BookModel.deleteOne({_id: id});
+      return 'ok';
+    }catch (e) {
+      console.log(e);
+      return false
+    }
   }
 
   static downloadBook(id) {

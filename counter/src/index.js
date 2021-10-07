@@ -5,6 +5,10 @@ const port = process.env.PORT || 3000;
 const redisUrl = process.env.REDIS_URL || 'localhost';
 const redisPort = process.env.REDIS_PORT || 0;
 
+console.log('envs',process.env);
+console.log(`redisUrl: ${redisUrl}`);
+console.log(`redisPort: ${redisPort}`);
+
 let client;
 let counter = {};
 

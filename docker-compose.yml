@@ -1,9 +1,10 @@
-version: '3.1'
+version: '3.3'
 services:
   ndjs-dz4-app:
     build:
       context: ./books
-      dockerfile: books/.docker/Dockerfile
+      dockerfile: Dockerfile
+    container_name: ndjs-4-books
     entrypoint: ['yarn', 'watch']
     env_file:
       - .env
@@ -13,10 +14,24 @@ services:
       - "./books/src:/var/www/src"
     links:
       - ndjs-dz4-counter
+      - ndjs-dz4-mongo
+    depends_on:
+      - ndjs-dz4-mongo
+  ndjs-dz4-mongo:
+    image: mongo:5.0.3
+    container_name: ndjs-4-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD:-password}
+    volumes:
+      - 'mongo_data:/data/db'
   ndjs-dz4-counter:
     build:
       context: ./counter
-      dockerfile: counter/Dockerfile
+      dockerfile: Dockerfile
     entrypoint: ['yarn', 'watch']
     env_file:
       - .env
@@ -26,9 +41,11 @@ services:
       - "5000:${PORT}"
     links:
       - ndjs-dz4-redis
+
   ndjs-dz4-redis:
     image: redis:alpine
     volumes:
       - redis_data:/data
 volumes:
   redis_data:
+  mongo_data:

@@ -5,12 +5,16 @@
 ## ENV
 
 ```dotenv
-POST=3000#Порт сервера
+POST=3000# Порт сервера
+COUNTER_PORT=3000# Порт счетчика
+COUNTER_URL=http://ndjs-dz4-counter# урл счетчика 
+MONGO_CONNECT_URL=mongodb://ndjs-dz4-mongo:27017#строка подключения к mongo
+MONGO_CONNECT_DB=db# база данных mongo
+MONGO_CONNECT_PASSWORD=example# пароль подключения к mongo
+MONGO_CONNECT_USERNAME=root# логин подключения к mongo
 ```
 
 ## Прокет
-
-[README](test/README.MD) - тесты
 
 [README](src/modules/auth/README.MD) - модуль авторизации
 
