@@ -4,8 +4,3 @@
 - [controller](controller/auth.controller.js) - контроллер
 - [router](router/auth.router.js) - роутер
 - [service](service/auth.service.js) - сервис
-
-## Тесты
-
-- [unit](test/unit) - unit тесты
-- [e2e](test/unit) - end to end тесты

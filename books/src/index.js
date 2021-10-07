@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const {dbConnect} = require('./mongo/connector')
 
 const routes = require('./routes');
 const {getRoutes} = require('./modules');
@@ -34,9 +35,15 @@ Object.keys(routes).forEach((routeName) => {
     console.log(`${route.path} module init`);
     app.use(route.path, route.router);
   });
-})()
+})();
 
-app.listen(port, () => {
-  console.log(`App listening on port: ${port}`);
-});
+(async () => {
+  const mongoose = await dbConnect();
+  if(mongoose) {
+    app.listen(port, () => {
+      console.log(`App listening on port: ${port}`);
+    });
+  }
+})();
+
 

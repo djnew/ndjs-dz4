@@ -1,18 +1,24 @@
 const {BookService} = require('../service/book.service');
-const {BookEntity} = require('../entity/book.entity');
+const {BookModel} = require('../model/book.model');
 
 
-function viewIndexBook(req, res) {
+async function viewIndexBook(req, res) {
+  const books = await BookService.getAll();
   res.render('book/index', {
     title: 'Библиотека - список книг',
-    books: BookService.getAll(),
+    books: books,
   });
 }
 
 async function viewAddBookPost(req, res) {
   const newBook = await BookService.createBook(req);
-  res.status(201);
-  res.redirect(`/library/${newBook.id}`);
+  if (newBook) {
+    res.status(201);
+    res.redirect(`/library/${newBook.id}`);
+  } else {
+    res.status(500);
+    res.json({message: 'что-то случилось с сервером'});
+  }
 }
 
 async function viewGetCounter(req, res) {
@@ -72,7 +78,7 @@ async function viewBook(req, res) {
 function viewAddBook(req, res) {
   res.render('book/add', {
     title: `Библиотека - добавить книгу`,
-    book: new BookEntity(),
+    book: new BookModel(),
   });
 }
 
