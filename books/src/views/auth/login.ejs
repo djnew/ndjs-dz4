@@ -1,0 +1,59 @@
+<%- include("../layout/header", {title: title}) %>
+<ul class="uk-breadcrumb">
+    <li><a href="/">Главная</a></li>
+    <li><span>вход / регистрация</span></li>
+</ul>
+<ul uk-tab>
+    <li><a href="#">Вход</a></li>
+    <li><a href="#">Регистрация</a></li>
+</ul>
+
+<ul class="uk-switcher uk-margin">
+    <li>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+            <form action="" method="POST" id="login">
+                <fieldset class="uk-fieldset">
+                    <legend class="uk-legend">Вход</legend>
+                    <div class="uk-margin hidden form-errors-login"></div>
+                    <div class="uk-margin">
+                        <input class="uk-input" required name="login" value="" type="text" placeholder="Имя пользователя">
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" required name="password" value="" type="password" placeholder="Пароль">
+                    </div>
+                    <div class="uk-margin">
+                        <button class="uk-button uk-button-default">Войти</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </li>
+    <li>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+            <form action="" method="POST" id="registration">
+                <fieldset class="uk-fieldset">
+                    <legend class="uk-legend">Регистрация</legend>
+                    <div class="uk-margin hidden form-errors">
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" required name="login" value="" type="text" placeholder="Имя пользователя">
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" required name="email" value="" type="email" placeholder="E-mail">
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" required name="password" value=" type="password" placeholder="Пароль">
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" required name="password_confirm" value="" type="password" placeholder="Подтверждение пароля">
+                    </div>
+                    <div class="uk-margin">
+                        <button class="uk-button uk-button-default">Войти</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </li>
+</ul>
+    <script src="/js/script.js"></script>
+<%- include("../layout/footer") %>

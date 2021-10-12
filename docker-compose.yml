@@ -11,7 +11,7 @@ services:
     ports:
       - "80:${PORT}"
     volumes:
-      - "./books/src:/var/www/src"
+      - "./books:/var/www"
     links:
       - ndjs-dz4-counter
       - ndjs-dz4-mongo
@@ -24,10 +24,10 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME:-root}
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD:-password}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_CONNECT_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_CONNECT_PASSWORD:-password}
     volumes:
-      - 'mongo_data:/data/db'
+      - 'mongo_new_data:/data/db'
   ndjs-dz4-counter:
     build:
       context: ./counter
@@ -48,4 +48,4 @@ services:
       - redis_data:/data
 volumes:
   redis_data:
-  mongo_data:
+  mongo_new_data:
