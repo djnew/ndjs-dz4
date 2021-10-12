@@ -1,0 +1,15 @@
+<%- include("../layout/header", {title: title}) %>
+<ul class="uk-breadcrumb">
+    <li><a href="/">Главная</a></li>
+    <li><span>Профиль</span></li>
+</ul>
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+    <div>
+       Логин: <%= user.login %><br />
+       E-mail: <%= user.email %><br />
+       <a href="/user/logout">Выход</a>
+    </div>
+</div>
+
+
+<%- include("../layout/footer") %>
