@@ -1,8 +1,21 @@
-const {AuthService} = require('../service/auth.service');
+const {UserService} = require('../service/user.service');
 
 function auth(req, res) {
+  const {email,login} = req.user;
   res.status(201);
-  res.json(AuthService.authUser());
+  res.json({email,login});
 }
 
-module.exports = {auth};
+async function signup(req, res) {
+  const user = await UserService.create(req.body)
+  if(user.status){
+    res.status(201);
+    res.json(user);
+  }else{
+    res.status(400);
+    res.json(user);
+  }
+
+}
+
+module.exports = {auth, signup};
