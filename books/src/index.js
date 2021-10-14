@@ -3,12 +3,18 @@ const cors = require('cors');
 const {dbConnect} = require('./mongo/connector')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const http = require('http');
+const socketIO = require('socket.io');
 
 const routes = require('./routes');
 const {getRoutes} = require('./modules');
 const {UserService} = require('./modules/auth/service/user.service');
+const {commentSocket} = require('./modules/comment/comment.socket');
 
 const app = express();
+const server = http.Server(app);
+const io = socketIO(server);
+
 const port = process.env.PORT || 3000;
 app.set('views', './src/views');
 app.set("view engine", "ejs");
@@ -79,10 +85,14 @@ Object.keys(routes).forEach((routeName) => {
   });
 })();
 
+io.on('connection', async (socket) => {
+  await commentSocket(socket);
+});
+
 (async () => {
   const mongoose = await dbConnect();
   if(mongoose) {
-    app.listen(port, () => {
+    server.listen(port, () => {
       console.log(`App listening on port: ${port}`);
     });
   }

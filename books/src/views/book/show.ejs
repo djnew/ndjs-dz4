@@ -13,4 +13,23 @@
 <% if(book.fileBook.length) { %>
     <p><b>Файл:</b> <a href="<%= book.fileBook; %>" download><%= book.fileName; %></p>
 <% } %>
+<form method="POST" id="comment-form">
+    <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Комментарий</legend>
+        <input type="hidden" name="book" value="<%= book.id; %>">
+        <div class="uk-margin">
+            <input class="uk-input" required name="author" value="" type="text" placeholder="Ваше имя">
+        </div>
+        <div class="uk-margin">
+            <textarea class="uk-textarea" rows="5" name="comment" placeholder="Комментарий"></textarea>
+        </div>
+        <div class="uk-margin">
+            <button class="uk-button uk-button-default">Сохранить</button>
+        </div>
+    </fieldset>
+</form>
+<ul class="uk-comment-list" id="comments"></ul>
+<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.js"></script>
 <%- include("../layout/footer") %>
