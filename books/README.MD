@@ -20,6 +20,8 @@ MONGO_CONNECT_USERNAME=root# логин подключения к mongo
 
 [README](src/modules/book/README.MD) - модуль книг
 
+[README](src/modules/comment/README.MD) - модуль комментариев (WebSocket/socket.io)
+
 ### запуск express:
 ```shell
 $ yarn start
