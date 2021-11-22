@@ -1,11 +1,11 @@
-const {home} = require('./controller/home.controller');
+const { home } = require('./controller/home.controller')
 
 const routes = {
   home: {
     path: '/',
     method: 'get',
-    function: home,
-  },
-};
+    function: home
+  }
+}
 
-module.exports = routes;
+module.exports = routes

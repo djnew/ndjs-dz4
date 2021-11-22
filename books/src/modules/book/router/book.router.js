@@ -1,46 +1,36 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+const book_controller_1 = require("../controller/book.controller");
 const fileMiddleware = require('../middleware/file');
-
-const {
-  indexBook,
-  getBookById,
-  createBook,
-  updateBook,
-  deleteBook,
-  downloadBook,
-} = require('../controller/book.controller');
-
+const bookController = new book_controller_1.BookController();
 const router = {
-  bookIndex: {
-    path: '/',
-    method: 'get',
-    function: indexBook,
-  },
-  bookGetById: {
-    path: '/:id',
-    method: 'get',
-    function: getBookById,
-  },
-  bookCreate: {
-    path: '/',
-    method: 'post',
-    file: fileMiddleware.single('fileBook'),
-    function: createBook,
-  },
-  bookUpdate: {
-    path: '/:id',
-    method: 'put',
-    file: fileMiddleware.single('fileBook'),
-    function: updateBook,
-  },
-  bookDelete: {
-    path: '/:id',
-    method: 'delete',
-    function: deleteBook,
-  },
-  downloadBook: {
-    path: '/:id/download',
-    method: 'get',
-    function: downloadBook,
-  },
+    bookIndex: {
+        path: '/',
+        method: 'get',
+        function: bookController.indexBook
+    },
+    bookGetById: {
+        path: '/:id',
+        method: 'get',
+        function: bookController.getBookById
+    },
+    bookCreate: {
+        path: '/',
+        method: 'post',
+        file: fileMiddleware.single('fileBook'),
+        function: bookController.createBook
+    },
+    bookUpdate: {
+        path: '/:id',
+        method: 'put',
+        file: fileMiddleware.single('fileBook'),
+        function: bookController.updateBook
+    },
+    bookDelete: {
+        path: '/:id',
+        method: 'delete',
+        function: bookController.deleteBook
+    }
 };
-module.exports = {router};
+exports.router = router;

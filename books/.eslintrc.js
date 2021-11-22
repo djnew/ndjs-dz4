@@ -1,10 +1,20 @@
 module.exports = {
-  extends: "eslint:recommended",
-  parserOptions: {
-    ecmaVersion: 8
-  },
   env: {
-    es6: true,
+    es2021: true,
     node: true
   },
+  extends: [
+    'standard'
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 13,
+    sourceType: 'module'
+  },
+  plugins: [
+    '@typescript-eslint'
+  ],
+  rules: {
+    'no-useless-constructor': 'off'
+  }
 }

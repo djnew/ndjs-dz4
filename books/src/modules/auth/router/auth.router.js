@@ -1,5 +1,5 @@
-const {auth, signup} = require('../controller/auth.controller');
-const passport = require('passport');
+const { auth, signup } = require('../controller/auth.controller')
+const passport = require('passport')
 
 const router = {
   auth: {
@@ -8,16 +8,16 @@ const router = {
     auth: passport.authenticate(
       'local',
       {
-        failureRedirect: false,
-      },
+        failureRedirect: false
+      }
     ),
-    function: auth,
+    function: auth
   },
   signup: {
     path: '/signup',
     method: 'post',
-    function: signup,
-  },
+    function: signup
+  }
 }
 
-module.exports = {router}
+module.exports = { router }

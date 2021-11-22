@@ -1,14 +1,14 @@
-const {Schema, model,SchemaTypes} = require("mongoose");
+const { Schema, model, SchemaTypes } = require('mongoose')
 
 const commentScheme = new Schema({
   book: {
-    type:SchemaTypes.ObjectId,
+    type: SchemaTypes.ObjectId,
     required: true
   },
   createdAt: {
     type: Date,
     required: true,
-    default: Date.now,
+    default: Date.now
   },
   author: {
     type: String,
@@ -18,8 +18,8 @@ const commentScheme = new Schema({
     type: String,
     required: true
   }
-});
+})
 
-const CommentModel = model("Comment", commentScheme);
+const CommentModel = model('Comment', commentScheme)
 
-module.exports = {CommentModel};
+module.exports = { CommentModel }
