@@ -1,6 +1,7 @@
 # папки
 node_modules
 .idea
+public
 
 # конфиги
 .env

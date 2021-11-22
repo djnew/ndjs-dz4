@@ -1,5 +1,4 @@
-const {authView, signupView,logout} = require('../controller/auth-view.controller');
-const passport = require('passport');
+const { authView, signupView, logout } = require('../controller/auth-view.controller')
 
 const router = {
   auth: {
@@ -11,9 +10,9 @@ const router = {
       }
       next()
     },
-    function: authView,
+    function: authView
   },
-  logout:{
+  logout: {
     path: '/logout',
     method: 'get',
     function: logout
@@ -30,8 +29,8 @@ const router = {
       }
       next()
     },
-    function: signupView,
-  },
+    function: signupView
+  }
 }
 
-module.exports = {router}
+module.exports = { router }

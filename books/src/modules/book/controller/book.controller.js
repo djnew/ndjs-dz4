@@ -1,66 +1,42 @@
-const {BookService} = require('../service/book.service');
-const path = require('path');
-
-async function indexBook(req, res) {
-  const books = await BookService.getAll();
-  res.json(
-    books
-  );
-}
-
-async function getBookById(req, res) {
-  const book = BookService.getById(req.params.id);
-  if (!book) {
-    res.status(404);
-    res.json({status: '404 Not Found'});
-  } else {
-    res.json(book);
-  }
-}
-
-async function createBook(req, res) {
-  const newBook = await BookService.createBook(req);
-  res.status(201);
-  res.json(newBook);
-}
-
-async function updateBook(req, res) {
-  const updateBook = await BookService.updateBook(req.params.id, req);
-  if (!updateBook) {
-    res.status(404);
-    res.json({status: '404 Not Found'});
-  } else {
-    res.json(updateBook);
-  }
-}
-
-function deleteBook(req, res) {
-  res.send(BookService.deleteBook(req.params.id));
-}
-
-function downloadBook(req, res) {
-  const filePath = BookService.downloadBook(req.params.id);
-  if (!filePath) {
-    res.status(404);
-    res.json({status: '404 Not Found'});
-  } else {
-    const pathFromRoot = path.join(__dirname, '../../../../public', filePath);
-
-    res.download(`${pathFromRoot}`, null, err => {
-        if (err) {
-          res.status(404).json();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BookController = void 0;
+const book_service_1 = require("../service/book.service");
+class BookController {
+    constructor() {
+        this.bookService = new book_service_1.BookService();
+    }
+    async indexBook(req, res) {
+        const books = await this.bookService.getAll();
+        res.json(books);
+    }
+    async getBookById(req, res) {
+        const book = await this.bookService.getById(req.params.id);
+        if (!book) {
+            res.status(404);
+            res.json({ status: '404 Not Found' });
         }
-      },
-    );
-  }
+        else {
+            res.json(book);
+        }
+    }
+    async createBook(req, res) {
+        const newBook = await this.bookService.createBook(req);
+        res.status(201);
+        res.json(newBook);
+    }
+    async updateBook(req, res) {
+        const updateBook = await this.bookService.updateBook(req.params.id, req);
+        if (!updateBook) {
+            res.status(404);
+            res.json({ status: '404 Not Found' });
+        }
+        else {
+            res.json(updateBook);
+        }
+    }
+    async deleteBook(req, res) {
+        res.send(this.bookService.deleteBook(req.params.id));
+    }
 }
-
-module.exports = {
-  indexBook,
-  getBookById,
-  createBook,
-  updateBook,
-  deleteBook,
-  downloadBook,
-};
-
+exports.BookController = BookController;
