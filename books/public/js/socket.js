@@ -1,6 +1,6 @@
-$(function (){
+$(function () {
   const getTmp = (msg) => {
-    const date = dayjs(msg.createdAt);
+    const date = dayjs(msg.createdAt)
     return `
   <li>
     <article class="uk-comment">
@@ -23,26 +23,25 @@ $(function (){
     </article>
     <hr>
   </li>
-        `;
-  };
+        `
+  }
 
-  const bookId = $('input[name=book]').val();
-  const socket = io.connect('/', {query: `bookId=${bookId}`});
+  const bookId = $('input[name=book]').val()
+  const socket = io('/', { query: `bookId=${bookId}`, upgrade: false, transports: ['websocket'] })
 
-  $('#comment-form').on('submit',function (e){
-    e.preventDefault();
-    let formData = {};
+  $('#comment-form').on('submit', function (e) {
+    e.preventDefault()
+    const formData = {}
     $(this).serializeArray().map(function (x) {
-      formData[x.name] = x.value;
-    });
-    socket.emit('comment-to-book', formData);
-    $(this)[0].reset();
-    UIkit.notification({message: 'Ваш комментарий добавлен', status: 'success'})
+      formData[x.name] = x.value
+    })
+    socket.emit('comment-to-book', formData)
+    $(this)[0].reset()
+    UIkit.notification({ message: 'Ваш комментарий добавлен', status: 'success' })
   })
 
   socket.on('comment-to-book', (msg) => {
-    const div = getTmp(msg);
-    $('#comments').append(div);
-  });
-});
-
+    const div = getTmp(msg)
+    $('#comments').append(div)
+  })
+})

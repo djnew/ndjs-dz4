@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     ports:
-      - "80:${PORT}"
+      - 80:${PORT:-3000}
     volumes:
       - "./books:/var/www"
     links:
@@ -38,7 +38,7 @@ services:
     volumes:
       - "./counter/src:/var/www/src"
     ports:
-      - "5000:${PORT}"
+      - 5000:${PORT:-5000}
     links:
       - ndjs-dz4-redis
 

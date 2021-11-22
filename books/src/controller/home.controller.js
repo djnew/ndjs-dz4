@@ -1,7 +1,7 @@
-function home(req, res) {
-  res.render("index", {
-    title: "Библиотека"
+function home (req, res) {
+  res.render('index', {
+    title: 'Библиотека'
   })
 }
 
-module.exports = {home};
+module.exports = { home }
