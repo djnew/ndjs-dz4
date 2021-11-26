@@ -1,7 +1,8 @@
 const { BookService } = require('../service/book.service')
 const { BookModel } = require('../model/book.model')
+const { container } = require('../container')
 
-const bookService = new BookService()
+const bookService = container.get(BookService)
 async function viewIndexBook (req, res) {
   const books = await bookService.getAll()
   res.render('book/index', {
