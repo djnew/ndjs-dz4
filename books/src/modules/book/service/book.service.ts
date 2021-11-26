@@ -1,16 +1,18 @@
+import 'reflect-metadata'
 import { BookRepository } from '../repository/book.repository'
 import axios from 'axios'
 import { IBookModel } from '../model/i-book.model'
-import { updateBookType } from '../types/book.types.js'
-
+import { updateBookType } from '../types/book.types'
+import { inject, injectable } from 'inversify'
 const url = process.env.COUNTER_URL || 'localhost'
 const port = process.env.COUNTER_PORT || 5000
 
+@injectable()
 class BookService {
   private bookRepository: BookRepository;
 
-  constructor () {
-    this.bookRepository = new BookRepository()
+  constructor (@inject(BookRepository) bookRepository: BookRepository) {
+    this.bookRepository = bookRepository
   }
 
   async getAll (): Promise<IBookModel[]> {

@@ -1,21 +1,22 @@
 import { BookService } from '../service/book.service'
 import { Request, Response } from 'express'
+import { container } from '../container'
 
 export class BookController {
-  private bookService: BookService;
+  private _bookService: BookService;
   constructor () {
-    this.bookService = new BookService()
+    this._bookService = container.get(BookService)
   }
 
   async indexBook (req: Request, res: Response) {
-    const books = await this.bookService.getAll()
+    const books = await this._bookService.getAll()
     res.json(
       books
     )
   }
 
   async getBookById (req: Request, res: Response) {
-    const book = await this.bookService.getById(req.params.id)
+    const book = await this._bookService.getById(req.params.id)
     if (!book) {
       res.status(404)
       res.json({ status: '404 Not Found' })
@@ -25,13 +26,13 @@ export class BookController {
   }
 
   async createBook (req: Request, res: Response) {
-    const newBook = await this.bookService.createBook(req)
+    const newBook = await this._bookService.createBook(req)
     res.status(201)
     res.json(newBook)
   }
 
   async updateBook (req: Request, res: Response) {
-    const updateBook = await this.bookService.updateBook(req.params.id, req)
+    const updateBook = await this._bookService.updateBook(req.params.id, req)
     if (!updateBook) {
       res.status(404)
       res.json({ status: '404 Not Found' })
@@ -41,6 +42,6 @@ export class BookController {
   }
 
   async deleteBook (req: Request, res: Response) {
-    res.send(this.bookService.deleteBook(req.params.id))
+    res.send(this._bookService.deleteBook(req.params.id))
   }
 }
