@@ -1,4 +1,4 @@
-import { IBookModel } from '../model/i-book.model.js'
+import { IBookModel } from '../model/book.model.js'
 
 export interface IBookRepository {
   createBook(book: IBookModel): Promise<IBookModel | false>;

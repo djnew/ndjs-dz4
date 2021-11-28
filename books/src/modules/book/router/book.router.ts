@@ -1,9 +1,11 @@
 import { BookController } from '../controller/book.controller'
+import { RouterKeyType } from './router.types'
 
-const fileMiddleware = require('../middleware/file')
+const { multerFile } = require('../middleware/file.js')
 
 const bookController = new BookController()
-const router = {
+
+const router: RouterKeyType = {
   bookIndex: {
     path: '/',
     method: 'get',
@@ -17,13 +19,13 @@ const router = {
   bookCreate: {
     path: '/',
     method: 'post',
-    file: fileMiddleware.single('fileBook'),
+    file: multerFile.single('fileBook'),
     function: bookController.createBook
   },
   bookUpdate: {
     path: '/:id',
     method: 'put',
-    file: fileMiddleware.single('fileBook'),
+    file: multerFile.single('fileBook'),
     function: bookController.updateBook
   },
   bookDelete: {

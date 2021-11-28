@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.bookContainer = void 0;
+require("reflect-metadata");
+const inversify_1 = require("inversify");
+const book_repository_1 = require("./repository/book.repository");
+const book_service_1 = require("./service/book.service");
+const bookContainer = new inversify_1.Container();
+exports.bookContainer = bookContainer;
+bookContainer.bind(book_repository_1.BookRepository).toSelf();
+bookContainer.bind(book_service_1.BookService).toSelf();

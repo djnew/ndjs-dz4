@@ -1,51 +1,56 @@
-const {
-  viewIndexBook, viewBook, viewAddBook, viewBookDelete, viewAddBookPost, viewUpdateBook, viewUpdateBookPost,
-  viewGetCounter
-} = require('../controller/book-view.controller')
-const fileMiddleware = require('../middleware/file')
+const { BookViewController } = require('../controller/book-view.controller.js')
+const { multerFile } = require('../middleware/file.js')
 
-const router = {
+const bookViewController = new BookViewController()
+interface RouterType {
+  path: string,
+  method: string,
+  file?: any,
+  function: any
+}
+
+type RouterKeyType = {
+  [key:string]: RouterType
+}
+
+const router: RouterKeyType = {
   bookAdd: {
     path: '/add',
     method: 'get',
-    function: viewAddBook
+    function: bookViewController.viewAddBook
   },
   bookAddPost: {
     path: '/add',
     method: 'post',
-    file: fileMiddleware.single('fileBook'),
-    function: viewAddBookPost
+    file: multerFile.single('fileBook'),
+    function: bookViewController.viewAddBookPost
   },
   bookUpdate: {
     path: '/update/:id',
     method: 'get',
-    function: viewUpdateBook
+    function: bookViewController.viewUpdateBook
   },
-  bookCounter: {
-    path: '/counter/:id',
-    method: 'get',
-    function: viewGetCounter
-  },
+
   bookUpdatePost: {
     path: '/update/:id',
     method: 'post',
-    file: fileMiddleware.single('fileBook'),
-    function: viewUpdateBookPost
+    file: multerFile.single('fileBook'),
+    function: bookViewController.viewUpdateBookPost
   },
   bookDelete: {
     path: '/delete/:id',
     method: 'post',
-    function: viewBookDelete
+    function: bookViewController.viewBookDelete
   },
   bookIndex: {
     path: '/',
     method: 'get',
-    function: viewIndexBook
+    function: bookViewController.viewIndexBook
   },
   bookView: {
     path: '/:id',
     method: 'get',
-    function: viewBook
+    function: bookViewController.viewBook
   }
 }
 

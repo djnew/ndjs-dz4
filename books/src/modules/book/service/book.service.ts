@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { BookRepository } from '../repository/book.repository'
 import axios from 'axios'
-import { IBookModel } from '../model/i-book.model'
+import { IBookModel } from '../model/book.model'
 import { updateBookType } from '../types/book.types'
 import { inject, injectable } from 'inversify'
 const url = process.env.COUNTER_URL || 'localhost'
