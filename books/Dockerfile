@@ -5,6 +5,7 @@ WORKDIR /var/www
 COPY ["./package.json", "./yarn.lock", "/var/www/"]
 RUN yarn install
 COPY . /var/www
+RUN yarn build
 
 EXPOSE 3000
 

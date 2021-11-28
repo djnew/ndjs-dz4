@@ -1,6 +1,5 @@
 import { IBookRepository } from './i-book.repository'
-import { IBookModel } from '../model/i-book.model'
-import { BookModel } from '../model/book.model'
+import { IBookModel, BookModel } from '../model/book.model'
 import 'reflect-metadata'
 import { injectable } from 'inversify'
 
