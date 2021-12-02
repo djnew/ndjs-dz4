@@ -1,4 +1,4 @@
-import { IBookModel } from '../model/i-book.model'
+import { IBookModel } from '../model/book.model'
 
 export interface updateBookType {
   book: IBookModel

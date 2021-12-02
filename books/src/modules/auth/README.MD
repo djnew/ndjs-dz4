@@ -1,16 +1,17 @@
 ## Модуль
-модуль авторизации, на данный момент не действует, отдает статичный json
+Модуль авторизации, на данный момент не действует, отдает статичный json
 
-- [controller](controller/auth.controller.js) - контроллер
-- [controller-view](controller/auth-view.controller.js) - контроллер ejs
-- [router](router/auth.router.js) - роутер
-- [router-view](router/auth-view.router.js) - роутер ejs
-- [service](service/user.service.js) - сервис работы с пользователями
+- [container](auth.container.ts) - контейнер dependency injection
+- [controller](controller/auth.controller.ts) - контроллер
+- [controller-view](controller/auth-view.controller.ts) - контроллер ejs
+- [router](router/auth.router.ts) - роутер
+- [router-view](router/auth-view.router.ts) - роутер ejs
+- [service](service/user.service.ts) - сервис работы с пользователями
 
-```javascript
-GET /user/login   страница с формой входа / регистрации
-GET /user/logout  страница выхода
-GET /user/me      страница профиля
-POST /api/user/login
-POST /api/user/signup
+```
+GET /user/login         страница с формой входа / регистрации
+GET /user/logout        страница выхода
+GET /user/me            страница профиля
+POST /api/user/login    api входа
+POST /api/user/signup   api регистрации
 ```

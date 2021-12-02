@@ -1,5 +1,15 @@
 import { Schema, model } from 'mongoose'
-import { IBookModel } from '../model/i-book.model'
+
+interface IBookModel {
+  id?: string,
+  title: string,
+  description: string,
+  authors: string,
+  favorite: string,
+  fileCover?: string,
+  fileName?: string,
+  fileBook?: string
+}
 
 const bookScheme = new Schema<IBookModel>({
   title: {
@@ -22,4 +32,4 @@ const bookScheme = new Schema<IBookModel>({
 
 const BookModel = model<IBookModel>('Book', bookScheme)
 
-export { BookModel }
+export { BookModel, IBookModel }

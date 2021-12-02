@@ -1,6 +1,7 @@
 $(function () {
   $('#login').on('submit', function (e) {
-    e.preventDefault()
+    console.log('login')
+    e.preventDefault();
     const formData = {}
     $(this).serializeArray().map(function (x) {
       formData[x.name] = x.value
